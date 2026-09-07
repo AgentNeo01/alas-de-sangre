@@ -1,0 +1,13 @@
+# Normaliza texto, protege binarios (evita corrupción por fin de línea)
+* text=auto
+*.html text
+*.md   text
+*.css  text
+*.js   text
+
+*.pdf  binary
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.webp binary
