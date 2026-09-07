@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alas de Sangre — Colegio de Guerra de Basgiath</title>
+<meta name="description" content="Campaña de D&amp;D 5e en el universo de Alas de Sangre. Portal para los jinetes del Ala Cuarta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blood:#6b0f12; --blood2:#8c1a1f; --gold:#b8862b; --goldl:#d9c489;
+    --ink:#eae3d4; --dim:#b3ab98; --bg:#141011; --bg2:#1c1617; --card:#211a1b;
+    --line:#3a2c26;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"EB Garamond",Georgia,serif;font-size:18px;line-height:1.65}
+  a{color:var(--goldl);text-decoration:none}
+  a:hover{color:#fff}
+  h1,h2,h3{font-family:"Cinzel",serif;font-weight:700;letter-spacing:.02em;line-height:1.15}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  /* top bar */
+  .bar{height:6px;background:var(--blood);position:sticky;top:0;z-index:20}
+  nav{position:sticky;top:6px;z-index:19;background:rgba(20,16,17,.92);
+    backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;gap:20px;align-items:center;height:56px;flex-wrap:wrap}
+  nav .brand{font-family:"Cinzel";font-weight:900;color:var(--goldl);font-size:15px;letter-spacing:.14em;text-transform:uppercase;margin-right:auto}
+  nav a{font-family:"Cinzel";font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+  nav a:hover{color:var(--goldl)}
+  /* hero */
+  .hero{position:relative;padding:96px 0 84px;text-align:center;
+    background:radial-gradient(1200px 500px at 50% -10%, rgba(140,26,31,.35), transparent 60%),
+               linear-gradient(180deg,#0e0b0c, var(--bg))}
+  .hero .emblem{font-size:60px;line-height:1;color:var(--gold);filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
+  .hero h1{font-size:clamp(42px,8vw,86px);font-weight:900;color:#f3ede1;margin:.15em 0 .05em;
+    text-shadow:0 3px 24px rgba(107,15,18,.7)}
+  .hero .sub{font-family:"Cinzel";letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-size:clamp(11px,2.4vw,15px)}
+  .hero p.lead{max-width:640px;margin:26px auto 0;color:var(--dim);font-size:20px;font-style:italic}
+  .rule{width:120px;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:26px auto}
+  .cta{display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  .btn{font-family:"Cinzel";font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:12px 20px;border:1px solid var(--gold);border-radius:3px;color:var(--goldl);background:transparent;transition:.18s}
+  .btn:hover{background:var(--gold);color:#1a1010}
+  .btn.solid{background:var(--blood);border-color:var(--blood2);color:#f3ede1}
+  .btn.solid:hover{background:var(--blood2);color:#fff}
+  /* sections */
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  section h2{font-size:clamp(26px,5vw,38px);color:#f3ede1;text-align:center;margin:0 0 6px}
+  .kicker{text-align:center;font-family:"Cinzel";letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-size:12px;margin-bottom:10px}
+  .lead2{max-width:720px;margin:0 auto 34px;text-align:center;color:var(--dim)}
+  /* world cards */
+  .grid{display:grid;gap:18px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:22px}
+  .card h3{color:var(--goldl);font-size:19px;margin:.1em 0 .4em}
+  .card p{margin:0;color:var(--dim);font-size:16.5px}
+  /* cast */
+  .cast{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .npc{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:.18s}
+  .npc:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .npc .ph{aspect-ratio:3/4;overflow:hidden;border-bottom:2px solid var(--gold)}
+  .npc .ph img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .npc .body{padding:14px 16px 18px}
+  .npc h3{margin:0;color:#f3ede1;font-family:"Cinzel";font-size:18px}
+  .npc .tag{color:var(--gold);font-size:12px;font-family:"Cinzel";letter-spacing:.12em;text-transform:uppercase}
+  .npc p{margin:.5em 0 0;color:var(--dim);font-size:15.5px}
+  /* resources */
+  .res{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .res a.card{display:block}
+  .res .card h3::before{content:"⭳  ";color:var(--gold)}
+  /* recaps */
+  .recap{background:var(--bg2);border-left:4px solid var(--blood);border-radius:0 6px 6px 0;padding:20px 24px;margin-bottom:18px}
+  .recap h3{color:var(--goldl);margin:0 0 4px;font-size:20px}
+  .recap .date{font-family:"Cinzel";font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+  .recap p{margin:.5em 0 0;color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:40px 0;text-align:center;color:var(--dim);font-size:14px}
+  footer .em{color:var(--gold);font-size:26px}
+  @media(max-width:760px){
+    .g3,.g2,.cast,.res{grid-template-columns:1fr}
+    nav .wrap{height:auto;padding:10px 22px}
+    body{font-size:17px}
+  }
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<nav><div class="wrap">
+  <span class="brand">Alas de Sangre</span>
+  <a href="#mundo">El mundo</a>
+  <a href="#jugar">Cómo se juega</a>
+  <a href="#elenco">El elenco</a>
+  <a href="#recursos">Recursos</a>
+  <a href="#recaps">Bitácora</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="emblem">✦</div>
+    <div class="sub">Colegio de Guerra de Basgiath</div>
+    <h1>Alas de Sangre</h1>
+    <p class="lead">«El que cruza, entra. El que cae, nunca existió.»</p>
+    <div class="rule"></div>
+    <div class="cta">
+      <a class="btn solid" href="assets/pdf/Alas_de_Sangre_Libro_del_Jugador.pdf">Libro del Jugador</a>
+      <a class="btn" href="#jugar">Cómo se juega</a>
+      <a class="btn" href="#elenco">Conoce el elenco</a>
+    </div>
+  </div>
+</header>
+
+<section id="mundo">
+  <div class="wrap">
+    <div class="kicker">El mundo</div>
+    <h2>Bienvenido al Ala Cuarta</h2>
+    <p class="lead2">Te han conscripto en la academia más letal del reino para intentar convertirte en lo más
+      temido y admirado que existe: un jinete de dragón. Muchos entran. Pocos salen con vida.</p>
+    <div class="grid g3">
+      <div class="card"><h3>Peligro real</h3><p>Basgiath cribra a los débiles. Los personajes pueden morir —por eso empiezas con varios reclutas y solo el que sobrevive se convierte en tu héroe.</p></div>
+      <div class="card"><h3>Intriga y lealtades</h3><p>Rivalidades, secretos, pactos y una academia que no cuenta toda la verdad. Lo que decides con quién y por qué pesa tanto como tu espada.</p></div>
+      <div class="card"><h3>El vínculo</h3><p>Si sobrevives al primer año, un dragón —colosal, antiguo y mortal— decidirá si ata su vida a la tuya. Nadie elige a su dragón: es el dragón quien elige.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="jugar" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="kicker">Cómo se juega</div>
+    <h2>D&amp;D 5e, en pocas palabras</h2>
+    <p class="lead2">Es un juego de conversación e imaginación. El Director describe el mundo; tú dices qué hace tu
+      personaje. Cuando el resultado es incierto, lo decide un dado de 20 caras. Rol… con dados.</p>
+    <div class="grid g2">
+      <div class="card"><h3>La tirada básica</h3><p>1d20 + el modificador de tu característica. Si igualas o superas la Clase de Dificultad (CD), tienes éxito. Persuadir, mentir, colarte, recordar un dato… todo se tira.</p></div>
+      <div class="card"><h3>Las tres clases</h3><p><b>Guerrero</b> (versátil y resistente), <b>Bárbaro</b> (furia y aguante) y <b>Pícaro</b> (astucia y precisión). La magia no viene de la clase: viene de tu dragón.</p></div>
+    </div>
+    <p style="text-align:center;margin-top:28px">
+      <a class="btn solid" href="assets/pdf/Alas_de_Sangre_Libro_del_Jugador.pdf">Descargar el Libro del Jugador (PDF)</a>
+    </p>
+  </div>
+</section>
+
+<section id="elenco">
+  <div class="wrap">
+    <div class="kicker">El elenco</div>
+    <h2>Rostros que conocerás en Basgiath</h2>
+    <p class="lead2">Algunos serán aliados, otros rivales, otros… algo más. Ninguno es lo que parece a primera vista.</p>
+    <div class="cast">
+      <div class="npc"><div class="ph"><img src="assets/img/rio.jpg" alt="Rio"></div><div class="body"><span class="tag">Alumno mayor</span><h3>Rio</h3><p>Alto, tatuado, imposible de ignorar. Puede darte las mejores vibras… o helarte la sangre. Nadie sabe de qué lado está.</p></div></div>
+      <div class="npc"><div class="ph"><img src="assets/img/theron.jpg" alt="Theron"></div><div class="body"><span class="tag">Recluta</span><h3>Theron</h3><p>Menudo y de lentes, la mente más afilada del Ala Cuarta. Callado… hasta que ve una injusticia. Entonces no se calla.</p></div></div>
+      <div class="npc"><div class="ph"><img src="assets/img/aurelia.jpg" alt="Aurelia"></div><div class="body"><span class="tag">Recluta</span><h3>Aurelia</h3><p>Pelirroja, distante, como si perteneciera a otro mundo. Casi nadie ha oído su voz. Inalcanzable… para casi todos.</p></div></div>
+      <div class="npc"><div class="ph"><img src="assets/img/dax.jpg" alt="Dax"></div><div class="body"><span class="tag">Recluta</span><h3>Dax</h3><p>Bronceado, lleno de cicatrices y de buen humor. Despistado de manual… y mucho más letal en la arena de lo que aparenta.</p></div></div>
+      <div class="npc"><div class="ph"><img src="assets/img/imani.jpg" alt="Imani"></div><div class="body"><span class="tag">Recluta · «el Códice»</span><h3>Imani</h3><p>Alta e imponente, se sabe el Códice de memoria y te lo va a citar. Fuerza y cerebro en la misma persona.</p></div></div>
+      <div class="npc"><div class="ph"><img src="assets/img/corvin.jpg" alt="Corvin"></div><div class="body"><span class="tag">¿?</span><h3>Corvin</h3><p>Aparece a contraluz cuando menos lo esperas, con una sonrisa que lo promete todo… y se desvanece igual. ¿Quién es en realidad?</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="recursos" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="kicker">Recursos</div>
+    <h2>Para los jinetes</h2>
+    <p class="lead2">Todo lo que necesitas para tu personaje. Descárgalo, imprímelo y trae dados.</p>
+    <div class="res">
+      <a class="card" href="assets/pdf/Alas_de_Sangre_Libro_del_Jugador.pdf"><h3>Libro del Jugador</h3><p>Reglas básicas, características, combate y consejos. Léelo entero: no tiene spoilers.</p></a>
+      <a class="card" href="assets/pdf/Alas_de_Sangre_Fichas_Imprimibles.pdf"><h3>Fichas imprimibles</h3><p>Hoja de reclutas y ficha de personaje de nivel 1, listas para rellenar.</p></a>
+    </div>
+  </div>
+</section>
+
+<section id="recaps">
+  <div class="wrap">
+    <div class="kicker">Bitácora</div>
+    <h2>Crónicas del Ala Cuarta</h2>
+    <p class="lead2">Lo que ha ocurrido hasta ahora. (El Director actualiza esto tras cada sesión.)</p>
+    <div class="recap">
+      <div class="date">Sesión 1 · Conscripción</div>
+      <h3>El Parapeto</h3>
+      <p>Bajo una tormenta que mordía, los reclutas cruzaron el Parapeto —una cinta de piedra negra sin red ni
+      barandal— y vieron caer a los primeros. Los que llegaron vivos entraron al Ala Cuarta, donde el frío, el
+      recelo de las Alas de Hierro y unos cuantos rostros por conocer los esperaban.</p>
+    </div>
+    <div class="recap">
+      <div class="date">Sesión 2 · Primeras Semanas</div>
+      <h3>Cicatrices y colchoneta</h3>
+      <p>Las semanas se contaron en cicatrices. Entre clases del Códice, duelos en la arena y noches de barracón,
+      el escuadrón empezó a forjar lazos… y rivalidades. Y en la lejanía, más allá de las murallas, un aullido sin
+      nombre recordó a todos que Basgiath no cuenta toda la verdad.</p>
+    </div>
+    <div class="recap" style="border-left-color:var(--gold);opacity:.75">
+      <div class="date">Próximamente</div>
+      <h3>Sesión 3 · Presión</h3>
+      <p>La cuenta atrás hacia la Presentación. (Se escribirá aquí después de jugarla.)</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="em">✦</div>
+    <p>Campaña fan ambientada en el universo de <b>Alas de Sangre</b> (<i>Fourth Wing</i>) de Rebecca Yarros.<br>
+    Material de aficionado, sin fines de lucro. No oficial ni licenciado por la autora ni por Wizards of the Coast.</p>
+  </div>
+</footer>
+</body>
+</html>
